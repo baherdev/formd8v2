@@ -1,0 +1,66 @@
+<?php
+
+use Drupal\Core\Database\Database;
+
+function formd8v2_schema() {
+  $schema['form_1'] = array(
+    // Example (partial) specification for table "node".
+    'description' => 'The base table for forms.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary identifier for a form.',
+        'type' => 'serial',
+        'not null' => TRUE,
+      ),
+      'first_name' => array(
+        'description' => 'The First name',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'last_name' => array(
+        'description' => 'The last name',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'gender' => array(
+        'description' => 'The gender name',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'birth_date' => array(
+        'description' => 'The birth date',
+        'type' => 'int',
+        'length' => 127,
+        'not null' => TRUE,
+      ),
+      'email' => array(
+        'description' => 'The email',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+
+    ),
+
+    'primary key' => array('id'),
+  );
+  return $schema;
+}
+
+function formd8v2_update_8001(){
+  $column = array(
+    'description' => 'fid',
+    'type' => 'int',
+    'length' => 20,
+    'not null' => FALSE,
+    );
+  $schema = Database::getConnection()->schema();
+  $schema ->addField('form_1','fid',$column);
+}
